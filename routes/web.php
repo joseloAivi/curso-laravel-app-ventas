@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('inicio');
 });
 
 Route::get('/contactanos', function () {
@@ -23,3 +23,33 @@ Route::get('/contactanos', function () {
 Route::get('/acercade', function () {
     return view('nosotros');
 });
+
+//rutas conectadas a controladores
+Route::get('/producto','ProductoController@listar');
+//cargar el formulario de producto
+Route::get('/producto/crear','ProductoController@nuevo');
+//guardar datos
+Route::post('/producto','ProductoController@guardar');
+//ruta para mostarr un producto
+Route::get('/producto/{id}','ProductoController@mostrar');
+
+//ruta para cargar un formulario de edicion
+Route::get('/producto/{id}/editar','ProductoController@editar');
+//ruta para modificar un recurso
+Route::put('/producto/{id}','ProductoController@modificar');
+//para eliminar un recurso de producto
+Route::delete('/producto/{id}','ProductoController@eliminar');
+
+
+
+
+
+//Route::get('/categoria','CategoriaController@listar');
+//Route::get('/categoria/{id}','CategoriaController@show');
+
+
+//controlador con recursos
+Route::resource("/categoria","CategoriaController");
+Route::resource("/cliente","ClienteController");
+Route::resource("/pedido","PedidoController");
+Route::resource('/usuario','UsuarioController');
